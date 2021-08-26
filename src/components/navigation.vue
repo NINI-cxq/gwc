@@ -2,25 +2,28 @@
     <div id="navigation">
         <el-card>
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="navigate">
+                <el-col :span="2" style="padding: 1px 5px">
+                    <el-image src="https://img0.baidu.com/it/u=2173609813,2095459094&fm=26&fmt=auto&gp=0.jpg"></el-image>
+                </el-col>
                 <el-menu-item index="1">首页</el-menu-item>
                 <el-menu-item index="2">全部分类</el-menu-item>
+                <!--搜索框-->
                 <el-menu-item>
                     <el-autocomplete
                         v-model="searchInput"
                         :fetch-suggestions="querySearchAsync"
                         placeholder="请输入内容"
                         @select="handleSelect"
-                        style="width:500px"
+                        style="width:400px"
                         prefix-icon="el-icon-search"
                         @blur="search"
-                        @keyup.enter.native="search">
-
+                        @keyup.enter.native="search" >
                     </el-autocomplete>
                 </el-menu-item>
                 <el-menu-item index="3">我的购物车</el-menu-item>
                 <el-menu-item index="4">我的订单</el-menu-item>
                 <el-menu-item index="5" @click="drawer = true" v-if="isLogin">个人中心</el-menu-item>
-                <el-menu-item index="5" @click="dialogVisible = true" v-if="!isLogin" >登录/注册</el-menu-item>
+                <el-menu-item index="5" @click="dialogVisible = true" v-loading.fullscreen.lock="fullscreenLoading" v-if="!isLogin" >登录/注册</el-menu-item>
             </el-menu>
         </el-card>
         <!--登录注册-->
@@ -51,13 +54,13 @@
             size="20%"
             :show-close="false">
             <div class="avator center">
-                <el-avatar :shape="square" :size="70" :src="user.avator"></el-avatar>
+                <el-avatar  :size="70" :src="this.userInfo.avator"></el-avatar>
             </div>
             <div class="username center">
-                <span>{{user.username}}</span>
+                <span>{{this.userInfo.username}}</span>
             </div>
             <div class="main center">
-                <el-menu :default-active="userActiveIndex" class="" mode="vertical">
+                <el-menu :default-active="userActiveIndex" class="" mode="vertical" @select="userDrawerMenu" v-loading.fullscreen.lock="fullscreenLoading">
                     <el-menu-item index="1">个人资料</el-menu-item>
                     <el-menu-item index="2">我的订单</el-menu-item>
                     <el-menu-item index="3">我的购物车</el-menu-item>
@@ -72,7 +75,6 @@
 
 <script>
     import {validatenull} from "@/utils/validate";
-
     export default {
         name: "navigation",
         components:{},
@@ -89,10 +91,7 @@
                 activeIndex:'1',
                 userActiveIndex:'1',
                 drawer:false,
-                user:{
-                avator:"https://img0.baidu.com/it/u=1389506498,1990831843&fm=26&fmt=auto&gp=0.jpg",
-                 username:"NINI"
-                },
+
                 restaurants:[],
                 searchInput:'',
                 timeout:null,
@@ -101,7 +100,7 @@
                     username:'',
                     password:''
                 },
-
+                fullscreenLoading:false
             }
         },
         methods: {
@@ -182,13 +181,43 @@
                 switch(key){
                     case "1":this.$router.push({path:'/'});break;
                     case "2":this.$router.push({path:'/category'});break;
+                    case "3":this.$router.push({path:'/shopcar'});break;
+                }
+
+            },
+            userDrawerMenu(key){
+                switch(key){
+                    case "1":break;
+                    case "2":break;
                     case "3":break;
+                    case "4":break;
+                    case "5":break;
+                    case "6": this.logout()
+                              ;break;
                 }
 
             },
             login(){
-                this.$store.dispatch('login')
+                this.fullscreenLoading=true;
+                this.$store.dispatch('login').then(()=>{
+                    this.fullscreenLoading=false;
+                    this.$message({
+                        message:'登录成功',
+                        type:'success'
+                    })
+                })
                 this.dialogVisible = false
+            },
+            logout(){
+                this.fullscreenLoading=true;
+                this.$store.dispatch('logout').then(()=>{
+                    this.fullscreenLoading=false;
+                    this.$message({
+                        message:'已退出登录',
+                        type:'success'
+                    })
+                })
+                this.drawer = false
             }
         },
         mounted() {
@@ -207,10 +236,5 @@
 .main{
 
 }
-    .a{
-        text-decoration: none;
-    }
-.router-link-active {
-    text-decoration: none;
-}
+
 </style>
