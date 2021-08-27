@@ -107,26 +107,26 @@ export default new Vuex.Store({
                     }
                     let shopCar=[
                         {
-                            name:'联想拯救者电竞手机2 Pro 12GB+256GB 骁龙888 双涡扇增压液冷 八指操控',
-                            imgUrl:'https://img11.360buyimg.com/babel/s200x200_jfs/t1/179154/7/20590/224539/61232324Ed96178a7/98d8ad97970f31f0.jpg',
-                            category:'联想',
-                            unitPrice:'3699.00',
+                            name:'回力官方旗舰 经典帆布鞋男女鞋秋季中高帮鞋子',
+                            imgUrl:'https://img13.360buyimg.com/mobilecms/s110x110_jfs/t1/179751/15/20787/256673/6124b317E7d35cd94/528b0247c1bd2439.jpg!cc_110x110',
+                            category:'鞋子',
+                            unitPrice:'75.00',
                             count:'2',
                             checked:false
                         },
                         {
-                            name:' 鸿星尔克男士运动跑步防风服立领薄款休闲夹克外套男 51221182183 暮夕黄 ',
-                            imgUrl:'https://img10.360buyimg.com/n7/jfs/t1/156585/8/5985/74631/6000120cE205ba69e/08580585f1fc7b7c.jpg',
-                            category:'鸿星尔克',
-                            unitPrice:'229.00',
+                            name:' 【跨境商品】日本资生堂（Shiseido）洗颜专科洗面奶女洁面乳120ml ',
+                            imgUrl:'https://img10.360buyimg.com/cms/jfs/t19129/159/553794183/22024/b2fe4133/5a9626bbNff9d4d5f.jpg!q90',
+                            category:'洗面奶',
+                            unitPrice:'59.00',
                             count:'1',
                             checked:false
                         },
                         {
-                            name:'柯思娜妮真皮马丁靴女春秋2021秋季新款英伦风平底女士靴子系带机车女靴',
-                            imgUrl:'https://img13.360buyimg.com/n7/jfs/t1/178070/34/18661/419859/61127ec0E83ff7d23/a189691ae88a15e3.png',
-                            category:'马丁靴女',
-                            unitPrice:'189.00',
+                            name:'红双喜DHS羽毛球12只装耐打比赛用球软木球头稳定飞行TR410',
+                            imgUrl:'https://img11.360buyimg.com/mobilecms/s110x110_jfs/t1/111246/35/3635/179472/5ea91c7dE5437e606/ed34b0caf5a3761d.jpg!cc_110x110',
+                            category:'羽毛球',
+                            unitPrice:'49.00',
                             count:'1',
                             checked:false
                         }
