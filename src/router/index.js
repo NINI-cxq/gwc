@@ -32,6 +32,36 @@ const routes = [
         path:'/shopcar',
         name:'shopcar',
         component: () => import('../pages/shopcar'),
+    },
+    {
+        path:'/goods/:id',
+        name:'Goods',
+        component: () => import('../views/goods/index'),
+        props:true,
+        children:[{
+            path:'detail',
+            name:'detail',
+            component: () => import('../views/goods/detail'),
+            props:true
+        },{
+            path:'spec',
+            name:'spec',
+            component: () => import('../views/goods/spec'),
+            props:true
+        },{
+            path:'service',
+            name:'service',
+            component: () => import('../views/goods/service'),
+
+        },{
+            path:'comments',
+            name:'comments',
+            component: () => import('../views/goods/comments'),
+
+        },
+
+        ]
+
     }
 
 ]
